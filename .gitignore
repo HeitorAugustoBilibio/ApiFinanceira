@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/source/APIFinanceira.api/bin/Debug/net8.0
+/source/APIFinanceira.api/obj
+/source/Domain/bin/Debug/net8.0
+/source/Domain/obj
+/source/Infra/bin/Debug/net8.0
+/source/Infra/obj
+/source/infraBanco/bin/Debug/net8.0
+/source/infraBanco/obj
+/source/Service/bin/Debug/net8.0
+/source/Service/obj
+/source/.vs
