@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entidades;
+﻿using Domain.Entidades;
+using Service.DTOs;
 
 namespace Service.Interfaces;
 
 public interface ILoginService
 {
-    string ObterAutenticacao(string username, string password);
+    string ObterAutenticacao(LoginDTO loginDTO);
 
     Login? ObterUsuarioExistente(string emailExistente, string senhaExistente);
 }

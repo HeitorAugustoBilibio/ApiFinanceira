@@ -1,11 +1,14 @@
 using Domain.Entidades;
 using Infra;
 using Microsoft.EntityFrameworkCore;
+using Service.AutoMapper;
+using Service.Interfaces;
 using Service.Service;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddTransient<AuthService>();
 
+
+builder.Services.AddAuthentication().AddBearerToken();  
 
 // Configurar o DbContext
 builder.Services.AddDbContext<ApiFinanceiroContext>(options =>
@@ -17,6 +20,11 @@ builder.Services.AddDbContext<ApiFinanceiroContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
+builder.Services.AddTransient<ILoginService, LoginService>();
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+
+
 
 var app = builder.Build();
 

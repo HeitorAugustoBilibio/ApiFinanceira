@@ -1,45 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Domain.Entidades;
 using Infra;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Service.DTOs;
 using Service.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Service.Service;
 
 public class LoginService : ILoginService
 
 {
+    private readonly IMapper _mapper;
     private readonly ApiFinanceiroContext _dbContext;
-    private readonly AuthService _authService;
     
-    public LoginService(ApiFinanceiroContext dbContext, AuthService authService)
+    public LoginService(ApiFinanceiroContext dbContext, IMapper mapper)
     {
-        _authService = authService;
         _dbContext = dbContext;
+        _mapper = mapper;
     }
-    public string ObterAutenticacao(string email, string senha)
+    public string ObterAutenticacao(LoginDTO loginDTO)
     {
-        var usuarioExistente = ObterUsuarioExistente(email, senha);
+        var mapperToModel = _mapper.Map<Login>(loginDTO);
+        var usuarioExistente = ObterUsuarioExistente(mapperToModel.Email, mapperToModel.Senha);
 
         if (usuarioExistente == null)
             return "";
 
-         return _authService.GenarateToken(usuarioExistente);        
+         return new AuthService().GenarateToken(usuarioExistente)??"";        
     }
 
     public Login? ObterUsuarioExistente(string emailExistente, string senhaExistente)
     {
         Login login = new Login();
-        try
-        {
+        string query = $"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ilike '{emailExistente}' AND \"Senha\" = '{senhaExistente}'"
+        using (var command = new SqlCommand(query))
+
+            try
+            {
             var usuario = _dbContext.Usuarios
-                          .FromSql($"SELECT Email, Senha FROM Usuarios WHERE Email = {emailExistente} AND Senha = {senhaExistente}")
+                          .FromSql($"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ilike '{emailExistente}' AND \"Senha\" = '{senhaExistente}'")
                           .Select(x => new
                           {
                               email = x.Email,

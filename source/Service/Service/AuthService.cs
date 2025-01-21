@@ -17,7 +17,7 @@ public class AuthService : IAuthService
         return ci;
     }
 
-    public string GenarateToken(Login login)
+    public string? GenarateToken(Login login)
     {
         var handler = new JwtSecurityTokenHandler();
 
