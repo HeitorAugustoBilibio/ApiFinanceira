@@ -1,7 +1,11 @@
+using Domain.Entidades;
 using Infra;
 using Microsoft.EntityFrameworkCore;
+using Service.Service;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<AuthService>();
+
 
 // Configurar o DbContext
 builder.Services.AddDbContext<ApiFinanceiroContext>(options =>
@@ -15,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 // Middlewares
 if (app.Environment.IsDevelopment())

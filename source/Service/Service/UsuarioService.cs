@@ -28,9 +28,7 @@ public class UsuarioService : IUsuario
             Console.WriteLine(ex.ToString());
             throw;
         }
-
     }
-
     public bool criarUsuario(Usuario usuario)
     {
         try
