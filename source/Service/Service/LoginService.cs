@@ -35,7 +35,7 @@ public class LoginService : ILoginService
         Login login = new Login();
         string query = $"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ILIKE @Email AND \"Senha\" ILIKE @Senha";
         using (var command = new SqlCommand(query))
-
+            Console.WriteLine(command);
             try
             {
             var usuario = _dbContext.User
