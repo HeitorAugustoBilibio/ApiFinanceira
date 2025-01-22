@@ -33,9 +33,9 @@ public class LoginService : ILoginService
     public Login? ObterUsuarioExistente(string emailExistente, string senhaExistente)
     {
         Login login = new Login();
-        string query = $"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ILIKE @Email AND \"Senha\" ILIKE @Senha";
+        string query = $"SELECT \"Email\", \"Password\" FROM public.\"User\" where \"Email\" ILIKE @Email AND \"Password\" ILIKE @Senha";
         using (var command = new SqlCommand(query))
-            Console.WriteLine(command);
+
             try
             {
             var usuario = _dbContext.User

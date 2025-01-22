@@ -18,8 +18,7 @@ namespace APIFinanceira.api.Controllers
         [HttpPost]
         public IActionResult EditarUsuario([FromBody] LoginDTO loginDTO)
         {
-            var retorno = _loginService.ObterAutenticacao(loginDTO);
-            return Ok(retorno);
+            return Ok(new {Token = _loginService.ObterAutenticacao(loginDTO) });
         }
     }
 }

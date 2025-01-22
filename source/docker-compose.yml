@@ -1,0 +1,13 @@
+services:
+  apifinanceira.api:
+    image: ${DOCKER_REGISTRY-}apifinanceiraapi
+    build:
+      context: .
+      dockerfile: APIFinanceira.api/Dockerfile
+    environment:
+      - DOTNET_GENERATE_ASPNET_CERTIFICATE=false
+    ports:
+      - 5001:8080
+    expose:
+      - 5001
+    restart: on-failure

@@ -9,11 +9,11 @@ namespace Service.DTOs;
 
 public class MovementDTO
 {
-    public DateTimeOffset LançamentoDTO { get; set; }
-    public DateTimeOffset PagamentoDTO { get; set; }
-    public int QuantidadeParcelaDTO { get; set; }
-    public int NumeroParcelaDTO { get; set; }
-    public decimal ValorDTO { get; set; }
-    public decimal ValorJurosDTO { get; set; }
-    public int TipoMovimentacaoDTO { get; set; }
+    public DateTimeOffset Launch { get; set; }
+    public DateTimeOffset Payment { get; set; }
+    public int ParcelQuantity { get; set; }
+    public int ParcelNumber { get; set; }
+    public decimal Value { get; set; }
+    public decimal ValueInterest { get; set; }
+    public int MovementType { get; set; }
 }

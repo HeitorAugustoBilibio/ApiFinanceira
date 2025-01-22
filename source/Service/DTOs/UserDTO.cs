@@ -9,10 +9,10 @@ namespace Service.DTOs;
 
 public class UserDTO
 {
-    public string? Nome { get; set; }
-    public string? Foto { get; set; }
+    public string? Name { get; set; }
+    public string? Picture { get; set; }
     public string? Cpf { get; set; }
     public string? Email { get; set; }
-    public string? Senha { get; set; }
+    public string? Password { get; set; }
     public int Cargo { get; set; }
 }
