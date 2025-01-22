@@ -30,7 +30,6 @@ public class LoginService : ILoginService
 
          return new AuthService().GenarateToken(usuarioExistente)??"";        
     }
-
     public Login? ObterUsuarioExistente(string emailExistente, string senhaExistente)
     {
         Login login = new Login();

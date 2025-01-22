@@ -16,7 +16,6 @@ public class AuthService : IAuthService
         ci.AddClaim(new Claim("Senha", login.Password ?? ""));
         return ci;
     }
-
     public string? GenarateToken(Login login)
     {
         var handler = new JwtSecurityTokenHandler();
