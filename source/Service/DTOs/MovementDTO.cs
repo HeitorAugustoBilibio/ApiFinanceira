@@ -7,7 +7,7 @@ using Domain.Entidades;
 
 namespace Service.DTOs;
 
-public class MovimentacaoDTO
+public class MovementDTO
 {
     public DateTimeOffset LançamentoDTO { get; set; }
     public DateTimeOffset PagamentoDTO { get; set; }

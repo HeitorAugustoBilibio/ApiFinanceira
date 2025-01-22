@@ -23,7 +23,7 @@ public class LoginService : ILoginService
     public string ObterAutenticacao(LoginDTO loginDTO)
     {
         var mapperToModel = _mapper.Map<Login>(loginDTO);
-        var usuarioExistente = ObterUsuarioExistente(mapperToModel.Email, mapperToModel.Senha);
+        var usuarioExistente = ObterUsuarioExistente(mapperToModel.Email, mapperToModel.Password);
 
         if (usuarioExistente == null)
             return "";
@@ -39,18 +39,18 @@ public class LoginService : ILoginService
 
             try
             {
-            var usuario = _dbContext.Usuarios
+            var usuario = _dbContext.User
                           .FromSqlRaw(query,
                             new Npgsql.NpgsqlParameter("@Email", emailExistente),
                             new Npgsql.NpgsqlParameter("@Senha", senhaExistente))
                           .Select(x => new
                           {
                               email = x.Email,
-                              senha = x.Senha
+                              senha = x.Password
                           })
                           .First();
             login.Email = usuario.email;
-            login.Senha = usuario.senha;
+            login.Password = usuario.senha;
             return login;
         }
         catch (Exception)

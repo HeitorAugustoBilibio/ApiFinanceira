@@ -7,26 +7,26 @@ using Service.Interfaces;
 
 namespace Service.Service;
 
-public class UsuarioService : IUsuarioService
+public class UserService : IUserService
 {
     private readonly IMapper _mapper;
     private readonly ApiFinanceiroContext _dbContext;
-    public UsuarioService(ApiFinanceiroContext dbContext, IMapper mapper)
+    public UserService(ApiFinanceiroContext dbContext, IMapper mapper)
     {
         _mapper = mapper;
         _dbContext = dbContext;
     }
-    public List<UsuarioDTO> buscarUsuarios()
+    public List<UserDTO> buscarUsuarios()
     {
-        var usuariosDTO = _mapper.Map<List<UsuarioDTO>>(_dbContext.Usuarios.ToList());
+        var usuariosDTO = _mapper.Map<List<UserDTO>>(_dbContext.User.ToList());
         return usuariosDTO;
     }
 
-    public UsuarioDTO buscarUsuarioPorId(int id)
+    public UserDTO buscarUsuarioPorId(int id)
     {
         try
         {
-            var usuarioDTO = _mapper.Map<UsuarioDTO> (_dbContext.Usuarios.FirstOrDefault(x => x.Id == id));
+            var usuarioDTO = _mapper.Map<UserDTO> (_dbContext.User.FirstOrDefault(x => x.Id == id));
             return usuarioDTO;
         }
         catch (Exception ex)
@@ -37,11 +37,11 @@ public class UsuarioService : IUsuarioService
     }
 
 
-    public bool criarUsuario(UsuarioDTO usuarioDto)
+    public bool criarUsuario(UserDTO usuarioDto)
     {
         try
         {
-            var mapperToModel = _mapper.Map<Usuario>(usuarioDto);
+            var mapperToModel = _mapper.Map<User>(usuarioDto);
             _dbContext.Add(mapperToModel);
             _dbContext.SaveChanges();
             return true;
@@ -54,21 +54,21 @@ public class UsuarioService : IUsuarioService
         }
         
     }
-    public bool editarUsuario(UsuarioDTO usuarioDTO, int Id)
+    public bool editarUsuario(UserDTO usuarioDTO, int Id)
     {
         try
         {
-            var usuario = _mapper.Map<Usuario>(usuarioDTO);
-            Usuario? usuarioExistente = _dbContext.Usuarios.FirstOrDefault(x => x.Id == Id);
+            var usuario = _mapper.Map<User>(usuarioDTO);
+            User? usuarioExistente = _dbContext.User.FirstOrDefault(x => x.Id == Id);
             if (usuarioExistente == null)
                 return false;
 
-            usuarioExistente.Nome = usuario.Nome;
+            usuarioExistente.Name = usuario.Name;
             usuarioExistente.Cpf = usuario.Cpf;
-            usuarioExistente.Foto = usuario.Foto;
+            usuarioExistente.Picture = usuario.Picture;
             usuarioExistente.Email = usuario.Email;
-            usuarioExistente.Senha = usuario.Senha;
-            usuarioExistente.Cargo = usuario.Cargo;
+            usuarioExistente.Password = usuario.Password;
+            usuarioExistente.Position = usuario.Position;
                 
             _dbContext.SaveChanges();
             return true;
@@ -90,7 +90,7 @@ public class UsuarioService : IUsuarioService
             if(usuarioRemovido == null)
                 return false;
 
-            _dbContext.Remove(_dbContext.Usuarios.First(x => x.Id == id));
+            _dbContext.Remove(_dbContext.User.First(x => x.Id == id));
             _dbContext.SaveChanges();
             return true;
         }

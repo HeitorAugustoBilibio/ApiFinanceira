@@ -12,40 +12,40 @@ namespace APIFinanceira.api.Controllers
     [ApiController]
     public class UsuarioControllers : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUserService _usuarioService;
 
-        public UsuarioControllers(IUsuarioService usuarioService, IMapper mapper, ApiFinanceiroContext apiFinanceiroContext)
+        public UsuarioControllers(IUserService usuarioService, IMapper mapper, ApiFinanceiroContext apiFinanceiroContext)
         {
-            _usuarioService = new UsuarioService(apiFinanceiroContext, mapper);
+            _usuarioService = new UserService(apiFinanceiroContext, mapper);
         }
 
-        [HttpGet]
+        [HttpGet("ListUser")]
         public IActionResult ListarUsuario()
         {
             var usuarios = _usuarioService.buscarUsuarios();
             return Ok(usuarios);
         }
-        [HttpGet("{id}")]
+        [HttpGet("ListUser/{id}")]
         public IActionResult ListaUsuarioId(int id)
         {
             var usuario = _usuarioService.buscarUsuarioPorId(id);
             return Ok(usuario);
         }
-        [HttpPost]
-        public IActionResult CriarUsuario([FromBody] UsuarioDTO usuarioDTO)
+        [HttpPost("CreateUser")]
+        public IActionResult CriarUsuario([FromBody] UserDTO usuarioDTO)
         {
             var retorno = _usuarioService.criarUsuario(usuarioDTO);
             return Ok(retorno);
         }
-        [HttpPut("{Id}")]
-        public IActionResult EditarUsuario([FromBody] UsuarioDTO usuarioDTO, int Id)
+        [HttpPut("EditUser/{Id}")]
+        public IActionResult EditarUsuario([FromBody] UserDTO usuarioDTO, int Id)
         {
             var retorno = _usuarioService.editarUsuario(usuarioDTO, Id);
             return Ok(retorno);
         }
 
 
-        [HttpDelete]
+        [HttpDelete("DeleteUser")]
         public IActionResult DeletaUsuario(int id)
         {
             var retorno = _usuarioService.removerUsuario(id);

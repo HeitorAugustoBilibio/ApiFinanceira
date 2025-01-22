@@ -22,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
 builder.Services.AddTransient<ILoginService, LoginService>();
-builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 
 

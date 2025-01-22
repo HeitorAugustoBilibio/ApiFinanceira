@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Entidades;
 
-public class TipoMovi : EntityBase
+public class MovementType : EntityBase
 {
-    public bool Entrada { get; set; }
-    public bool Saida { get; set; }
+    public bool Enter { get; set; }
+    public bool Leave { get; set; }
 }

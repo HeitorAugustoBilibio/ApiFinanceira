@@ -7,13 +7,13 @@ using Domain.Enums;
 
 namespace Domain.Entidades;
 
-public class Usuario : EntityBase
+public class User : EntityBase
 {
-    public string Nome { get; set; }
-    public string Foto { get; set; }
+    public string Name { get; set; }
+    public string Picture { get; set; }
     public string Cpf { get; set; }
     public string Email { get; set; }
-    public string Senha { get; set; }
-    public TipoCargo Cargo { get; set; }
+    public string Password { get; set; }
+    public TypePosition Position { get; set; }
 }
 

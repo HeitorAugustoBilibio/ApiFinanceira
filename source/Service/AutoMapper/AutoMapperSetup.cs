@@ -13,8 +13,8 @@ public class AutoMapperSetup : Profile
 {
     public AutoMapperSetup()
     {
-        CreateMap<UsuarioDTO, Usuario>().ReverseMap();
-        CreateMap<MovimentacaoDTO, Movimentacao>().ReverseMap();
+        CreateMap<UserDTO, User>().ReverseMap();
+        CreateMap<MovementDTO, Movement>().ReverseMap();
         CreateMap<LoginDTO, Login>().ReverseMap();
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infra.Migrations
 {
     [DbContext(typeof(ApiFinanceiroContext))]
-    partial class ApiFinanceiroContextModelSnapshot : ModelSnapshot
+    [Migration("20250122021917_Nomenclatura")]
+    partial class Nomenclatura
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace Infra.Migrations
 
                     b.HasIndex("MovementTypeId");
 
-                    b.ToTable("CategoryMovements");
+                    b.ToTable("CategoriaMovis");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Login", b =>
@@ -97,7 +100,7 @@ namespace Infra.Migrations
 
                     b.HasIndex("MovementTypeId");
 
-                    b.ToTable("Movements");
+                    b.ToTable("Movimentacao");
                 });
 
             modelBuilder.Entity("Domain.Entidades.MovementType", b =>
@@ -116,7 +119,7 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovementTypes");
+                    b.ToTable("TipoMovimentacao");
                 });
 
             modelBuilder.Entity("Domain.Entidades.User", b =>
@@ -152,7 +155,7 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Domain.Entidades.CategoryMovement", b =>

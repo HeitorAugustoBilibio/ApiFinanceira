@@ -13,7 +13,7 @@ public class AuthService : IAuthService
     {
         var ci = new ClaimsIdentity();
         ci.AddClaim(new Claim(ClaimTypes.Email, login.Email ?? ""));
-        ci.AddClaim(new Claim("Senha", login.Senha ?? ""));
+        ci.AddClaim(new Claim("Senha", login.Password ?? ""));
         return ci;
     }
 

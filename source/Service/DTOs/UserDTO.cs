@@ -7,7 +7,7 @@ using Domain.Enums;
 
 namespace Service.DTOs;
 
-public class UsuarioDTO
+public class UserDTO
 {
     public string? Nome { get; set; }
     public string? Foto { get; set; }

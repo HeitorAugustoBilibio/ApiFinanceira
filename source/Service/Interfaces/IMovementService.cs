@@ -1,5 +1,5 @@
 ﻿namespace Service.Interfaces;
 
-public interface IMovimentacaoService
+public interface IMovementService
 {
 }

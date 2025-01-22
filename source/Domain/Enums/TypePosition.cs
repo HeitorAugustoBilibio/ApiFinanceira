@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Enums;
 
-public enum TipoCargo
+public enum TypePosition
 {
-    Administrador,
-    Usuario
+    Admin,
+    User
 }
