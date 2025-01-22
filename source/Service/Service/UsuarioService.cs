@@ -54,16 +54,22 @@ public class UsuarioService : IUsuarioService
         }
         
     }
-    public bool editarUsuario(UsuarioDTO usuarioDTO)
+    public bool editarUsuario(UsuarioDTO usuarioDTO, int Id)
     {
         try
         {
             var usuario = _mapper.Map<Usuario>(usuarioDTO);
-
-            if (_dbContext.Usuarios.FirstOrDefault(x => x.Id == usuario.Id) == null)
+            Usuario? usuarioExistente = _dbContext.Usuarios.FirstOrDefault(x => x.Id == Id);
+            if (usuarioExistente == null)
                 return false;
 
-            _dbContext.Update(usuario);
+            usuarioExistente.Nome = usuario.Nome;
+            usuarioExistente.Cpf = usuario.Cpf;
+            usuarioExistente.Foto = usuario.Foto;
+            usuarioExistente.Email = usuario.Email;
+            usuarioExistente.Senha = usuario.Senha;
+            usuarioExistente.Cargo = usuario.Cargo;
+                
             _dbContext.SaveChanges();
             return true;
         }

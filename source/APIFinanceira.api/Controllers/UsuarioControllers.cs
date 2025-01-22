@@ -14,7 +14,7 @@ namespace APIFinanceira.api.Controllers
     {
         private readonly IUsuarioService _usuarioService;
 
-        public UsuarioControllers(IUsuarioService usuarioService, IMapper mapper, ApiFinanceiroContext apiFinanceiroContext )
+        public UsuarioControllers(IUsuarioService usuarioService, IMapper mapper, ApiFinanceiroContext apiFinanceiroContext)
         {
             _usuarioService = new UsuarioService(apiFinanceiroContext, mapper);
         }
@@ -34,13 +34,13 @@ namespace APIFinanceira.api.Controllers
         [HttpPost]
         public IActionResult CriarUsuario([FromBody] UsuarioDTO usuarioDTO)
         {
-           var retorno = _usuarioService.criarUsuario(usuarioDTO);
-            return Ok(retorno); 
+            var retorno = _usuarioService.criarUsuario(usuarioDTO);
+            return Ok(retorno);
         }
-        [HttpPut()]
-        public IActionResult EditarUsuario([FromBody] UsuarioDTO usuarioDTO)
+        [HttpPut("{Id}")]
+        public IActionResult EditarUsuario([FromBody] UsuarioDTO usuarioDTO, int Id)
         {
-            var retorno = _usuarioService.editarUsuario(usuarioDTO);
+            var retorno = _usuarioService.editarUsuario(usuarioDTO, Id);
             return Ok(retorno);
         }
 

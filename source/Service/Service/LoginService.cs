@@ -34,13 +34,15 @@ public class LoginService : ILoginService
     public Login? ObterUsuarioExistente(string emailExistente, string senhaExistente)
     {
         Login login = new Login();
-        string query = $"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ilike '{emailExistente}' AND \"Senha\" = '{senhaExistente}'"
+        string query = $"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ILIKE @Email AND \"Senha\" ILIKE @Senha";
         using (var command = new SqlCommand(query))
 
             try
             {
             var usuario = _dbContext.Usuarios
-                          .FromSql($"SELECT \"Email\", \"Senha\" FROM public.\"Usuarios\" where \"Email\" ilike '{emailExistente}' AND \"Senha\" = '{senhaExistente}'")
+                          .FromSqlRaw(query,
+                            new Npgsql.NpgsqlParameter("@Email", emailExistente),
+                            new Npgsql.NpgsqlParameter("@Senha", senhaExistente))
                           .Select(x => new
                           {
                               email = x.Email,

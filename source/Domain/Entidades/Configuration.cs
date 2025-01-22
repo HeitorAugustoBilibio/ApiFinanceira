@@ -8,6 +8,6 @@ namespace Domain.Entidades
 {
     public class Configuration
     {
-        public static string privateKey { get; set; } = "29FP3RFz28XR!Nqo*Twd";
+        public static string privateKey { get; set; } = "dODj7fiQTz+l+Ml95Zt4IPy/cjpW1+IPUGhiiNcjupc=";
     }
 }
